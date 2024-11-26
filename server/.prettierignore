@@ -1,0 +1,32 @@
+.env# Ignore node_modules
+node_modules/
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore environment variable files
+.env
+
+# Ignore logs
+logs/
+*.log
+
+# Ignore compiled output
+coverage/
+*.tsbuildinfo
+
+# Ignore specific config files
+package-lock.json
+yarn.lock
+
+# Ignore git related files
+.git/
+
+# Ignore prettier config itself
+.prettierrc
+.prettierignore
+
+# Ignore any binaries or generated files
+*.min.js
+*.bundle.js
