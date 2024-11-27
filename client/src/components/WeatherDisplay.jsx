@@ -1,43 +1,84 @@
 const WeatherDisplay = ({ data }) => {
-    if (
-        !data ||
-        !Array.isArray(data.time) ||
-        data.time.length === 0 ||
-        !Array.isArray(data.temperature_2m) ||
-        data.temperature_2m.length === 0
-    ) {
-        return <div>Data is loading or unavailable</div>;
-    }
-
-    const numOfEntries = Math.min(
-        data.time.length,
-        data.temperature_2m.length,
-        data.relative_humidity_2m.length,
-        data.wind_speed_10m.length
-    );
-
-    const formatTime = (timeString) => {
-        const date = new Date(timeString);
-        return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    };
-
-    return (
-        <div className="mt-8">
-            <h2 className="text-xl font-bold mb-4">Hourly Forecast</h2>
-            <div className="space-y-4">
-                {data.time.slice(0, numOfEntries).map((hour, index) => (
-                    <div key={index} className="grid grid-cols-2 gap-4 border-b py-2">
-                        <div>{formatTime(hour)}</div>
-                        <div>Temp: {data.temperature_2m?.[index] || "N/A"} °C</div>
-                        <div>Humidity: {data.relative_humidity_2m?.[index] || "N/A"}%</div>
-                        <div>Wind Speed: {data.wind_speed_10m?.[index] || "N/A"} km/h</div>
-                        <div>Precipitation: {data.precipitation?.[index] || "N/A"} mm</div>
-                        <div>Cloud Cover: {data.cloud_cover?.[index] || "N/A"}%</div>
-                    </div>
-                ))}
-            </div>
+    if (!data || !data.time || data.time.length === 0) {
+      return (
+        <div className="text-gray-700 text-center p-6">
+          Data is loading or unavailable.
         </div>
+      );
+    }
+  
+    const numOfEntries = 24; 
+    const currentTime = new Date();
+    const currentHour = currentTime.getHours();
+  
+    
+    const startIndex = data.time.findIndex(
+      (time) => new Date(time).getHours() === currentHour
     );
-};
-
-export default WeatherDisplay;
+  
+    const forecastData =
+      startIndex !== -1
+        ? data.time.slice(startIndex, startIndex + numOfEntries)
+        : data.time.slice(0, numOfEntries);
+  
+    return (
+      <div className="mt-8 bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold mb-6 text-center">
+          Hourly Forecast (Next 24 Hours) 🌦️
+        </h2>
+        <div className="flex overflow-x-auto space-x-6 scrollbar-thin scrollbar-thumb-blue-700 scrollbar-track-blue-300">
+          {forecastData.map((time, index) => (
+            <div
+              key={index}
+              className="flex flex-col items-center bg-blue-400 bg-opacity-30 p-4 rounded-lg w-40 shadow-md"
+            >
+              
+              <p className="text-sm font-semibold mb-2 text-yellow-300">
+                {new Date(time).toLocaleTimeString([], {
+                  hour: '2-digit',
+                  minute: '2-digit',
+                })}
+              </p>
+  
+              
+              <div className="space-y-2 text-center">
+                <p>
+                  <span className="font-semibold text-blue-100">Temp:</span>{' '}
+                  <span className="text-white">
+                    {data.temperature_2m[startIndex + index]}°C
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold text-blue-100">Humidity:</span>{' '}
+                  <span className="text-white">
+                    {data.relative_humidity_2m[startIndex + index]}%
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold text-blue-100">Wind:</span>{' '}
+                  <span className="text-white">
+                    {data.wind_speed_10m[startIndex + index]} m/s
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold text-blue-100">Precip:</span>{' '}
+                  <span className="text-white">
+                    {data.precipitation[startIndex + index]} mm
+                  </span>
+                </p>
+                <p>
+                  <span className="font-semibold text-blue-100">Cloud:</span>{' '}
+                  <span className="text-white">
+                    {data.cloud_cover[startIndex + index]}%
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+  
+  export default WeatherDisplay;
+  
