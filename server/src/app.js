@@ -13,7 +13,11 @@ app.use(express.urlencoded({
     limit: "16kb"
 }))
 app.use(morgan("dev"))
-app.use(cors())
+// app.use(cors({
+//     origin: "https://weatherapp-okp05kz0a-kuldeep-singhs-projects-9ea0bdf6.vercel.app",
+//     methods: ["GET", "POST", "DELETE"],
+//     allowedHeaders: ["Content-Type"],
+// }))
 
 
 // routes
