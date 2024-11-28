@@ -35,6 +35,31 @@ A weather dashboard that provides **hourly weather forecasts** and **7-day weath
 
 ---
 
+
+## Screenshots
+
+### 1. Homepage (Weather Dashboard)
+![Homepage Screenshot](images/ss1.png)
+
+### 2. Search Form
+![Search Form](images/ss2.png)
+
+### 3. Current Weather
+![Current Weather](images/ss3.png)
+
+### 4. Hourly Forecast
+![Hourly Forecast Screenshot](images/ss4.png)
+
+### 5. 7-Day Forecast
+![7-Day Forecast Screenshot](images/ss5.png)
+
+### 6. Local Storage
+![Local Storage](images/ss6.png)
+
+
+
+
+
 ## API Endpoints:
 ### Backend Routes:
 - **GET `/api/weather?city={city}`**:
