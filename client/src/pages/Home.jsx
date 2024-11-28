@@ -34,7 +34,8 @@ const Home = () => {
 
   const fetchWeather = async (city) => {
     try {
-      const response = await axios.get(`http://localhost:9001/api/weather?city=${city}`);
+      // const response = await axios.get(`http://localhost:9001/api/weather?city=${city}`);
+      const response = await axios.get(`https://weatherapp-1hjfshp6u-kuldeep-singhs-projects-9ea0bdf6.vercel.app`);
       const { time, temperature_2m, relative_humidity_2m, wind_speed_10m, precipitation, cloud_cover, weathercode } = response.data.data;
 
       const weatherData = {

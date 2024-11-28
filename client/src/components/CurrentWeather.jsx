@@ -11,7 +11,7 @@ const CurrentWeather = ({ data, city }) => {
   
     const { temperature, condition, windSpeed, airQuality } = data;
   
-    return (
+    return ( 
       <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-lg shadow-lg w-full max-w-md mx-auto">
         <h2 className="text-3xl font-bold mb-4 text-center">
           {capitalizedCity}
