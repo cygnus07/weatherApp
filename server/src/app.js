@@ -14,7 +14,7 @@ app.use(express.urlencoded({
 }))
 app.use(morgan("dev"))
 app.use(cors({
-    origin: "https://weatherapp-okp05kz0a-kuldeep-singhs-projects-9ea0bdf6.vercel.app",
+    origin: "https://weather-app-frontend-pi.vercel.app",
     methods: ["GET", "POST", "DELETE"],
     allowedHeaders: ["Content-Type"],
 }))
