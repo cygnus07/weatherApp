@@ -1,2 +1,2 @@
 [build]
-root = "server"
+root = "00weatherApp/server"
